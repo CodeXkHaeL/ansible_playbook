@@ -7,8 +7,22 @@
   - name: update repository
     apt:
       update_cache: yes
-
+    when: ansible_distribution == "Ubuntu" 
+    
   - name: install apache2 package
     apt:
       name: apache2
       state: latest
+    when: ansible_distribution == "Ubuntu"
+  
+    
+  - name: update repository alpine
+    apk:
+      update_cache: yes
+    when: ansible_distribution == "Alpine" 
+  
+  - name: install apache2 in alpine 
+    ansible.builtin.apk:
+      name: apache2
+      state: present
+    when: ansible_distribution == "Alpine"

@@ -1,0 +1,15 @@
+---
+ 
+ - hosts: all
+   become: true
+   tasks:
+  
+   - name: update repository
+     apt:
+      update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+   - name: install nano
+     apt:
+      name: nano
+      state: latest
+     when: ansible distribution == "Ubuntu"
